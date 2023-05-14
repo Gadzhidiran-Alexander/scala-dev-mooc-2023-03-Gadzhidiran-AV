@@ -1,5 +1,7 @@
 import module1.{executor, future, threads, try_}
 import module1.threads.ToyFuture
+import module2.homework_hkt_implicits
+import module2.homework_hkt_implicits.tupleF
 import module2.implicits.{implicit_conversions, implicit_scopes}
 
 import java.util.concurrent.Executor
@@ -7,11 +9,15 @@ import scala.concurrent.duration.DurationInt
 import scala.concurrent.{Await, Future}
 import scala.language.postfixOps
 import scala.util.Try
+import homework_hkt_implicits.Converters._
 
 object Main {
 
   def main(args: Array[String]): Unit = {
     println("Hello world " + Thread.currentThread().getName)
+
+    val t1 = tupleF(List(1), List("test"))
+    val t2 = tupleF(Option(1), Option("test"))
 
 //    val t1 = new Thread{
 //      override def run(): Unit = {
