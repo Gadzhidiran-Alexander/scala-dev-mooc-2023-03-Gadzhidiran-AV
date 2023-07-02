@@ -15,9 +15,11 @@ object task_collections {
    * HINT: Тут удобно использовать collect и zipWithIndex
    *
    * **/
-  def capitalizeIgnoringASCII(text: List[String]): List[String] = {
-    List.empty
-  }
+  def capitalizeIgnoringASCII(text: List[String]): List[String] =
+    text.collect {
+      case s if isASCIIString(s) => s.toUpperCase
+      case s => s.toLowerCase()
+    }
 
   /**
    *
@@ -29,7 +31,8 @@ object task_collections {
    * HINT: Для всех возможных комбинаций чисел стоит использовать Map
    * **/
   def numbersToNumericString(text: String): String = {
-    ""
+    val replacements = Map("0" -> "zero", "1" -> "one", "2" -> "two", "3" -> "three", "4" -> "four", "5" -> "five", "6" -> "six", "7" -> "seven", "8" -> "eight", "9" -> "nine")
+    replacements.foldLeft(text)((a, b) => a.replace(b._1, b._2))
   }
 
   /**
@@ -42,20 +45,23 @@ object task_collections {
 
   case class Auto(mark: String, model: String)
 
+  def selectUnique(autos: Iterable[Auto]): Set[Auto] = autos.toSet
+
   /**
    * Хотим узнать какие машины можно обслужить учитывая этих двух дилеров
    * Реализуйте метод который примет две коллекции (два источника) и вернёт объединенный список уникальный значений
    **/
   def intersectionAuto(dealerOne: Iterable[Auto], dealerTwo: Iterable[Auto]): Iterable[Auto] = {
-    Iterable.empty
+    (dealerOne ++ dealerTwo).toSet
   }
 
   /**
-   * Хотим узнать какие машины обслуживается в первом дилеромском центре, но не обслуживаются во втором
+   * Хотим узнать какие машины обслуживается в первом дилерском центре, но не обслуживаются во втором
    * Реализуйте метод который примет две коллекции (два источника)
    * и вернёт уникальный список машин обслуживающихся в первом дилерском центре и не обслуживающимся во втором
    **/
   def filterAllLeftDealerAutoWithoutRight(dealerOne: Iterable[Auto], dealerTwo: Iterable[Auto]): Iterable[Auto] = {
-    Iterable.empty
+    val secondSelection = dealerTwo.toSeq
+    dealerOne.toSet.filter(a => !secondSelection.contains(a))
   }
 }
