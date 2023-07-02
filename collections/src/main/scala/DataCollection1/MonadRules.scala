@@ -1,4 +1,4 @@
-package DataCollection2
+package DataCollection1
 
 
 object MonadRules{
@@ -35,9 +35,9 @@ object MonadRules{
 
   def main(arg: Array[String]) : Unit = {
 
-    leftUnitLaw
-    rightUnitLow
-    associativeLaw
+    leftUnitLaw()
+    rightUnitLow()
+    associativeLaw()
 
   }
 
