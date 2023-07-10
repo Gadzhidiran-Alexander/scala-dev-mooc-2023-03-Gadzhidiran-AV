@@ -35,9 +35,9 @@ object MonadRules{
 
   def main(arg: Array[String]) : Unit = {
 
-    leftUnitLaw
+    /*leftUnitLaw
     rightUnitLow
-    associativeLaw
+    associativeLaw*/
 
   }
 
