@@ -32,3 +32,14 @@ libraryDependencies += "org.http4s" %% "http4s-ember-server" % "0.23.18"
 libraryDependencies += "org.http4s" %% "http4s-ember-client" % "0.23.18"
 
 testFrameworks := Seq(new TestFramework("zio.test.sbt.ZTestFramework"))
+
+val circeVersion = "0.14.1"
+libraryDependencies ++= Seq (
+  "io.circe" %%"circe-core",
+  "io.circe" %%"circe-generic",
+  "io.circe" %%"circe-parser"
+).map(_ % circeVersion)
+libraryDependencies += "io.circe" %%"circe-derivation" % "0.13.0-M5"
+libraryDependencies += "org.http4s" %% "http4s-circe" % "0.23.14"
+
+libraryDependencies += "org.postgresql" % "postgresql" % "42.3.1"

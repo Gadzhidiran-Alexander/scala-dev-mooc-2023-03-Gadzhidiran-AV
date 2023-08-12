@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="create User table" author="Gadzhidiran-AV" dbms="postgresql">
+        <createTable tableName="User">
+            <column name="id" type="text">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="firstName" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastName" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="User_to_Role">
+            <column name="roleId" type="text">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="userId" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="Role">
+            <column name="code" type="text">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="Role">
+            <column name="code">manager</column>
+            <column name="name">Manager</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
