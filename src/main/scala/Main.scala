@@ -1,8 +1,10 @@
+import collections.collections_experiment.{Ball, BlackColor, Experiment, WhiteColor}
 import module1.{executor, future, threads, try_}
 import module1.threads.ToyFuture
 import module2.implicits.{implicit_conversions, implicit_scopes}
 
 import java.util.concurrent.Executor
+import scala.collection.mutable.ListBuffer
 import scala.concurrent.duration.DurationInt
 import scala.concurrent.{Await, Future}
 import scala.language.postfixOps
@@ -17,6 +19,17 @@ object Main {
 
   def main(args: Array[String]): Unit = {
 //    println("Hello world " + Thread.currentThread().getName)
+
+    val tries = 10000
+    def prepareBalls = ListBuffer(
+      Ball(WhiteColor), Ball(BlackColor),
+      Ball(WhiteColor), Ball(BlackColor),
+      Ball(WhiteColor), Ball(BlackColor))
+
+    val experiments = Array.fill[Experiment](tries)(Experiment(prepareBalls))
+    val whiteAppears: Double = experiments.map(t => t.isRandomBallWhite).count(t => t).toDouble / tries
+    println(whiteAppears)
+
 
 //    val t1 = new Thread{
 //      override def run(): Unit = {
